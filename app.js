@@ -5,11 +5,11 @@ const _ = require('lodash');
 const cookieSession = require('cookie-session');
 
 ////////////// Set Production Environment //////////////
-const productionEnvironment = false;
+const productionEnvironment = true;
 
 let cookieSessionExpirationHours = 0;
 if (productionEnvironment) {
-  cookieSessionExpirationHours = 24;
+  cookieSessionExpirationHours = 60 * 60 * 1000 * 24;
 } else {
   cookieSessionExpirationHours = 10000 ; // milliseconds  | 60 * 60 * 1000 * 24 is 24 hours
 }
