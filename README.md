@@ -12,5 +12,7 @@ Then to run on _localhost:3000_:
 node app.js
 ```
 
-### When a user is not logged in they can see the posts and an option to login in the upper right nav bar 
+### Add tasks, strike them out when done, or delete them.
+This site uses cookies to keep track of tasks, they are deleted from the live site after 24hrs.
+
 ![Example Image1](public/images/ExampleImg.PNG?raw=true)
