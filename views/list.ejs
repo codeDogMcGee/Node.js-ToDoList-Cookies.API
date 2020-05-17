@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To Do</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+
+    <!-- add this when login functionality gets added -->
+    <!-- <div class="container-header">
+        <div class="header-left">
+            <ul>
+                <li id="dropdown-header"><a href="#"><h3>Lists &#9660</h3></a>
+                    <ul class="dropdown">
+                        <li><a href="#">Work</a></li>
+                        <li><a href="#">Weekend</a></li>
+                        <li><a href="#">A Long List Name</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <div class="header-right">
+            <a href=""><h3>Login</h3></a>
+        </div>
+    </div> -->
+
+    <div class="container-body">
+
+        <div class="card-body">
+
+            <div class="card-title">
+                <h1><%= listTitle %></h1>
+            </div>
+
+            <!-- populate task list -->
+            <div class="card-contents">
+                <ul>
+
+                    <% listItems.forEach( task => { %>
+                        <li>
+                            <label class="container-list-item"> 
+                                <form action="/taskChecked" method="post">
+
+                                    <!-- have to do this because checked is always on if included, even with no value -->
+                                    <% if (task.checked) { %>
+                                        <input type="checkbox" onchange="this.form.submit()" checked="checkbox">
+                                    <% } else { %>
+                                        <input type="checkbox" onchange="this.form.submit()">
+                                    <% } %>
+
+                                    <!-- need to pass these to /taskChecked -->
+                                    <input type='hidden' name='taskId' value='<%= task._id %>'>
+                                    <input type="hidden" name="listName" value="<%= listTitle %>">
+
+                                    <!-- fancy checkmark -->
+                                    <span class="checkmark"></span>
+                                    <div class="span-label"><%= task.task %></div>
+                                </form>
+                            </label>
+
+                            <!-- small delete button -->
+                            <form class="task-delete-button-form" action="/deleteTask" method="post">
+                                <input type="hidden" name="listName" value="<%= listTitle %>">
+                                <button name="taskId" value="<%= task._id %>">-</button>
+                            </form>
+                        </li>
+                    <% }) %>
+
+                </ul>
+            </div>
+
+            <!-- input new task and submit button -->
+            <div class="card-input">
+                <form action="/newTask" method="post">
+                    <input type="text" id="new-task-input" name="newTask" placeholder="New Task" autocomplete="off">
+                    <button class="new-task-button" type="submit" name="listName" value="<%= listTitle %>">+</button>
+                </form>
+            </div>
+
+        </div>
+
+        <!-- delete whole task list, always false until I add more lists -->
+        <% if (renderDeleteButton) { %>
+            <div class="button-div">
+                <button class="delete-list-button">Delete List</button>
+            </div>
+        <% } %>
+
+        
+    </div>
+
+    <div class="container-footer">
+        &copy; 2020 BernDog Technologies
+    </div>
+
+</body>
+</html>
