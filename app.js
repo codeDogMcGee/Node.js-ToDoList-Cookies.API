@@ -5,7 +5,7 @@ const _ = require('lodash');
 const cookieSession = require('cookie-session');
 
 ////////////// Set Production Environment //////////////
-const productionEnvironment = true;
+const productionEnvironment = false;
 
 let cookieSessionExpirationHours = 0;
 if (productionEnvironment) {
