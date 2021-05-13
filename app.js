@@ -9,7 +9,7 @@ const productionEnvironment = false;
 
 let cookieSessionExpirationHours = 0;
 if (productionEnvironment) {
-  cookieSessionExpirationHours = 60 * 60 * 1000 * 24;
+  cookieSessionExpirationHours = 60 * 60 * 1000 * 24 * 7;
 } else {
   cookieSessionExpirationHours = 10000 ; // milliseconds  | 60 * 60 * 1000 * 24 is 24 hours
 }
@@ -93,7 +93,7 @@ app.get("/", (req, res) => {
 });
 
 app.post("/newTask", (req, res) => {
-  
+
 
   const listName = req.body.listName; // this comes from the '+' push
   const itemName = req.body.newTask;
@@ -127,7 +127,7 @@ app.post("/deleteTask", (req, res) => {
       initializeSessionList(req);
     }
     res.redirect("/");
-    
+
   } // will add more functionality for other lists from mongodb
 });
 
